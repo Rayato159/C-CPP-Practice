@@ -42,6 +42,15 @@ int pop(struct Stack *st){
     return x;
 }
 
+int peek(struct Stack st, int index){
+    int x=-1;
+    if(st.top-index+1 < 0){
+        printf("Invalid Index\n");
+    }
+    x = st.s[st.top-index+1];
+    return x;
+}
+
 int isEmpty(struct Stack *st){
     return (st->top == -1) ? 1 : -1;
 }
@@ -56,13 +65,15 @@ int main(){
 
     create(&st);
 
-    for(i=0; i<st.size+1; i++){
+    for(i=0; i<st.size; i++){
         push(&st, i+1);
     }
     display(st);
 
-    printf("pop: %d\n", pop(&st));
-    display(st);
+    // printf("pop: %d\n", pop(&st));
+    // display(st);
+
+    printf("%d\n", peek(st, 5));
 
     return 0;
 }
