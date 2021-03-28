@@ -52,6 +52,22 @@ void preorder(struct Node *p){
     }
 }
 
+void inorder(struct Node *p){
+    if(p){
+        inorder(p->lchild);
+        printf("%d ", p->data);
+        inorder(p->rchild);
+    }
+}
+
+void postorder(struct Node *p){
+    if(p){
+        postorder(p->lchild);
+        postorder(p->rchild);
+        printf("%d ", p->data);
+    }
+}
+
 int main(){
     tree();
     preorder(root);
