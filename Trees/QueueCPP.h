@@ -1,17 +1,25 @@
 #include <iostream>
 #include <cstdlib>
-using namespace std;
+#ifndef QueueCPP_h
+#define QueueCPP_h
+
+class Node{
+    public:
+        Node *lchild;
+        int data;
+        Node *rchild;
+};
 
 class Queue{
     private:
         int size; 
         int front, rear;
-        int *Q;
+        Node **Q;
     public:
         Queue(int size){
             this->size = size+1;
             front = rear = 0;
-            Q = new int[this->size];
+            Q = new Node*[this->size];
         }
 
         bool isFull(){
@@ -22,9 +30,9 @@ class Queue{
             return rear==front;
         }
 
-        void enqueue(int x){
+        void enqueue(Node *x){
             if(isFull()){
-                cout << "Queue is full." << endl;
+                std::cout << "Queue is full." << std::endl;
             }
             else{
                 rear = (rear+1)%size;
@@ -32,10 +40,10 @@ class Queue{
             }
         }
 
-        int dequeue(){
-            int x = -1;
+        Node* dequeue(){
+            Node *x = NULL;
             if(isEmpty()){
-                cout << "Queue is empty" << endl;
+                std::cout << "Queue is empty" << std::endl;
             }
             else{
                 front = (front+1)%size;
@@ -47,24 +55,11 @@ class Queue{
         void display(){
             int i=front+1;
             do{
-                cout << Q[i] << " " << flush;
+                std::cout << Q[i] << " " << std::flush;
                 i=(i+1)%size;
             }while(i!=(rear+1)%size);
-            cout << endl;
+            std::cout << std::endl;
         }
 };
 
-int main(){
-    Queue q(3);
-
-    q.enqueue(10);
-    q.enqueue(20);
-    q.enqueue(30);
-    q.enqueue(40);
-
-    q.dequeue();
-
-    q.display();
-
-    return 0;
-}
+#endif

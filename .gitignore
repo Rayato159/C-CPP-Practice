@@ -1,2 +1,4 @@
 *.exe
 Queues/CircularCPP
+.vscode/settings.json
+Trees/Tree
