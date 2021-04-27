@@ -14,8 +14,16 @@ class Queue{
             Q = new int[this->size];
         }
 
+        bool isFull(){
+            return (rear+1)%size==front ? true: false;
+        }
+
+        bool isEmpty(){
+            return rear==front ? true: false;
+        }
+
         void enqueue(int x){
-            if((rear+1)%size == front){
+            if(isFull()){
                 cout << "Queue is full." << endl;
             }
             else{
@@ -26,7 +34,7 @@ class Queue{
 
         int dequeue(){
             int x = -1;
-            if(rear == front){
+            if(isEmpty()){
                 cout << "Queue is empty" << endl;
             }
             else{
